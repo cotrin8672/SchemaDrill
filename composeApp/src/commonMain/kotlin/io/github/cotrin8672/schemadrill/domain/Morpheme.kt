@@ -1,18 +1,5 @@
 package io.github.cotrin8672.schemadrill.domain
 
-enum class PoS {
-    NOUN,         // 名詞
-    PRONOUN,      // 代名詞
-    VERB,         // 動詞
-    ADJECTIVE,    // 形容詞
-    ADVERB,       // 副詞
-    AUXILIARY,    // 助動詞
-    PREPOSITION,  // 前置詞
-    ARTICLE,      // 冠詞
-    INTERJECTION, // 間投詞
-    CONJUNCTION,  //　接続詞
-}
-
 sealed interface Morpheme
 
 data object Comma : Morpheme
