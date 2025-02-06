@@ -14,100 +14,28 @@ enum class PoS {
     NUMERAL,      // 数詞
 }
 
-sealed interface Word {
-    val text: String
-    val pos: PoS
-    val meaning: String
-}
-
-data class Noun(
-    override val text: String,
-    override val meaning: String,
-) : Word {
-    override val pos: PoS = PoS.NOUN
-}
-
-data class Verb(
-    override val text: String,
-    override val meaning: String,
-) : Word {
-    override val pos: PoS = PoS.VERB
-}
-
-data class Adjective(
-    override val text: String,
-    override val meaning: String,
-) : Word {
-    override val pos: PoS = PoS.ADJECTIVE
-}
-
-data class Adverb(
-    override val text: String,
-    override val meaning: String,
-) : Word {
-    override val pos: PoS = PoS.ADVERB
-}
-
-sealed interface WordForm<T : Word> {
-    sealed interface VerbForm : WordForm<Verb> {
-        data object PastTense : VerbForm
-        data object PastParticiple : VerbForm
-        data object PresentParticiple : VerbForm
-    }
-
-    sealed interface NounForm : WordForm<Noun> {
-        data object Plural : NounForm
-    }
-
-    sealed interface AdjectiveForm : WordForm<Adjective> {
-        data object Comparative : AdjectiveForm
-        data object Superlative : AdjectiveForm
-    }
-
-    sealed interface AdverbForm : WordForm<Adverb> {
-        data object Comparative : AdverbForm
-        data object Superlative : AdverbForm
-    }
-}
+data class Word(
+    val lemma: String,
+    val pos: PoS,
+    val meaning: String,
+)
 
 sealed interface Token {
     val displayedText: String
 }
 
-sealed interface WordToken : Token {
-    val word: Word
-}
-
-data class SimpleWordToken(
-    override val word: Word,
+data class WordToken(
+    val word: Word,
     override val displayedText: String,
-) : WordToken
+) : Token
 
-data class InflectionWordToken<T : Word>(
-    override val word: T,
-    val form: WordForm<T>,
-    override val displayedText: String,
-) : WordToken
-
-enum class SymbolToken : Token {
-    Comma {
-        override val displayedText = ","
-    },
-    Period {
-        override val displayedText = "."
-    },
-    Colon {
-        override val displayedText = ":"
-    },
-    SEMICOLON {
-        override val displayedText = ";"
-    },
-    EXCLAMATION {
-        override val displayedText = "!"
-    },
-    QUESTION {
-        override val displayedText = "?"
-    },
+sealed class SymbolToken(override val displayedText: String) : Token {
+    data object Comma : SymbolToken(",")
+    data object Period : SymbolToken(".")
+    data object Colon : SymbolToken(":")
+    data object Semicolon : SymbolToken(";")
+    data object Exclamation : SymbolToken("!")
+    data object Question : SymbolToken("?")
 }
 
 data class Sentence(
