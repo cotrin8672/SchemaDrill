@@ -1,8 +1,8 @@
 [versions]
 agp = "8.7.3"
-android-compileSdk = "34"
-android-minSdk = "24"
-android-targetSdk = "34"
+android-compileSdk = "35"
+android-minSdk = "26"
+android-targetSdk = "35"
 androidx-activityCompose = "1.10.0"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.0"
@@ -19,6 +19,8 @@ buildKonfig = "0.15.2"
 ktor = "3.1.0"
 kotlinSerialization = "1.8.0"
 supabaseEdgeFunctions = "0.0.6"
+navigation = "2.8.0-alpha10"
+materialKolor = "2.0.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -41,6 +43,8 @@ supabase-compose-auth = { module = "io.github.jan-tennert.supabase:compose-auth"
 supabase-compose-auth-ui = { module = "io.github.jan-tennert.supabase:compose-auth-ui" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 kotlin-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinSerialization" }
+navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+kolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
